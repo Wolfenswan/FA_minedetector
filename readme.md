@@ -11,6 +11,9 @@ Download .zip and run the pbo as addon on your server. Requires CBA.
 v1 - 12/03/2015 - initial release
 v2 - 12/03/2015 - added directional detection and misc. tweaks
 
+** Known issues**<br/>
+The sound can appear to 'lag' behind the player's movement. This is because it is played from the player's eyes as 'source'. Thus, head movement can make the sound appear positional.
+
 **Credits & Contact**<br/>
 Wolfenswan (wolfenswanarps@gmail.com)<br/>
 Love to Folk ARPS for whom this was made.
