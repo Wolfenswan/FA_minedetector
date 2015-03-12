@@ -1,7 +1,10 @@
-private ["_radius","_unit","_nearmines","_nearestmine"];
+private ["_radius","_border","_unit","_nearmines","_nearestmine","_dirtomine"];
 
 // Radius in which to detect mines
-_radius = 60;
+_radius = 25;
+
+// How far off the center the mine can be to be detected (gradient)
+_border = 25;
 
 _unit = _this;
 while {alive _unit} do {
@@ -20,22 +23,22 @@ while {alive _unit} do {
 		if (((_nearmines select 0) distance _unit > (_nearmines select 1) distance _unit)) then [{_nearmines deleteAt 0},{_nearmines deleteAt 1}];
 	};
 
-	_nearestmine = _nearmines select 0;
+	if (count _nearmines == 1) then {
+		_nearestmine = _nearmines select 0;
+		_dirtomine = ([_unit, [getposATL _nearestmine select 0,getposATL _nearestmine select 1,0]] call BIS_fnc_relativedirTo);
 
-	// WIP on directionality
-	//_dirtomine = [_unit, getposATL _nearmine] call BIS_fnc_dirTo;
+		if (mineActive _nearestmine && {_dirToMine <= _border || _dirToMine >= (360-_border)}) then {
+			uisleep (((_unit distance _nearestmine)/25) max 0.1); //sleep in shorter intervals but at least 0.1 seconds
 
-	if (mineActive _nearestmine) then {
-		uisleep (((_unit distance _nearestmine)/25) max 0.1); //sleep in shorter intervals but at least 0.1 seconds
+			// "Tock"
+			// playSound3D ["A3\missions_f\data\sounds\click.wss", _unit, false, eyePos _unit, 4, 5, 3];
 
-		// "Tock"
-		//playSound3D ["A3\missions_f\data\sounds\click.wss", _unit, false, eyePos _unit, 4, 5, 3];
-
-		// "Ping"
-		playSound3D ["a3\missions_f_beta\data\sounds\firing_drills\drill_start.wss", _unit, false, eyePos _unit, 3, 2, 3];
+			// "Ping"
+			playSound3D ["a3\missions_f_beta\data\sounds\firing_drills\drill_start.wss", _unit, false, eyePos _unit, 2, 2, 4.5];
+		};
 	};
 
-	sleep 0.1;
+	uisleep 0.1;
 
 	// If unit misplaced the mine detector, exit the loop
 	if !("MineDetector" in (items _unit)) exitWith {_unit setVariable ["ws_var_mineDetector",false];};
