@@ -11,4 +11,5 @@ Download .zip and run the pbo as addon on your server. Requires CBA.
 v1.0 - 12/03/2015 - initial release
 
 **Credits & Contact**<br/>
-Wolfenswan (wolfenswanarps@gmail.com)
+Wolfenswan (wolfenswanarps@gmail.com)<br/>
+Love to Folk ARPS for whom this was made.
