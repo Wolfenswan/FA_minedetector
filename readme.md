@@ -8,10 +8,10 @@ Server-side addon to make minedetectors useful on higher difficulty settings. Pl
 Download .zip and run the pbo as addon on your server. Requires CBA.
 
 **Version history**<br/>
-v1 - 12/03/2015 - initial release
+v1 - 12/03/2015 - initial release<br/>
 v2 - 12/03/2015 - added directional detection and misc. tweaks
 
-** Known issues**<br/>
+**Known issues**<br/>
 The sound can appear to 'lag' behind the player's movement. This is because it is played from the player's eyes as 'source'. Thus, head movement can make the sound appear positional.
 
 **Credits & Contact**<br/>
